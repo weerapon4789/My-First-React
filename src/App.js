@@ -1,9 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect , useState } from 'react';
 import './App.css';
 import FormInput from './component/Form';
 import Transaction from './component/Transaction';
 import DataContext from './data/DataContext';
 import ReportComponent from './component/ReportComponent';
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+
 
 function App() {
   const design = {color:"red", textAlign:"center", fontSize:'2.2rem'}
@@ -36,19 +38,37 @@ function App() {
   },[items,reportIncome,reportExprence])
 
   return (
-    <DataContext.Provider value={
-      {
-        income:reportIncome,
-        expence:reportExprence
-    }
-    }>
+    <DataContext.Provider value={{income:reportIncome,expence:reportExprence}}>
         <div className='container'>
           <h1 style={design}>โปรแกรมบันทึก รายรับ-รายจ่าย</h1>
-          <ReportComponent/>
-          <FormInput onAdd = {onAdd}/>
-          <Transaction item = {items}/>
+          <Router>
+            <div>
+              <ul className='menu'>
+                <li>
+                  <Link to="/">ข้อมูลบัญชี</Link>
+                </li>
+                <li>
+                  <Link to="/insert">บันทึกข้อมูล</Link>
+                </li>
+              </ul>
+              <Routes>
+
+               <Route path="/" element={<ReportComponent/>} />
+               <Route path='/insert' element={
+                <div>
+                  <FormInput onAdd = {onAdd}/>
+                  <Transaction item = {items}/>
+                </div>} />
+
+              </Routes>
+
+            </div>
+          </Router>
+
         </div>
     </DataContext.Provider>    
+
+
   );
 }
 
