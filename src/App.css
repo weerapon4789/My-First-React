@@ -21,3 +21,31 @@ body {
   margin: 30px auto;
   width: 350px;
 }
+
+.menu {
+  list-style-type: none;
+  background-color: rgb(50, 50, 50);
+  border-radius: 5px;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  
+}
+
+.menu li {
+  display: inline-block;
+}
+
+.menu a{
+  color: #fff;
+  text-decoration: none;
+  padding: 20px;
+  display: block;
+}
+
+.menu a:hover {
+  font-size: 1.1rem;
+  color: red;
+}
